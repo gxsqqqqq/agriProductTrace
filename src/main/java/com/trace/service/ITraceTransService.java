@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 积分转让统计Service接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-24
  */
 public interface ITraceTransService 

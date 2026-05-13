@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 告警规则Service接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-22
  */
 public interface ITraceAlarmService 

@@ -1,6 +1,6 @@
 package com.trace.service.impl;
 
-import com.ruoyi.common.utils.DateUtils;
+import com.trace.common.utils.DateUtils;
 import com.trace.entity.TraceTrans;
 import com.trace.mapper.TraceTransMapper;
 import com.trace.service.ITraceTransService;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 积分转让统计Service业务层处理
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-24
  */
 @Service

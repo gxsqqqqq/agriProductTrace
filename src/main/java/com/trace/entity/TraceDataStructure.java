@@ -3,13 +3,13 @@ package com.trace.entity;
 import com.alibaba.fastjson2.JSONArray;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.ruoyi.common.annotation.Excel;
-import com.ruoyi.common.core.domain.BaseEntity;
+import com.trace.common.annotation.Excel;
+import com.trace.common.core.domain.BaseEntity;
 
 /**
  * 数据结构对象 trace_data_structure
  *
- * @author ruoyi
+ * 
  * @date 2024-10-07
  */
 public class TraceDataStructure extends BaseEntity

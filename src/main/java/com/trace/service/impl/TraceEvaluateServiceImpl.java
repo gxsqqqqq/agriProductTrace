@@ -11,8 +11,7 @@ import java.util.List;
 /**
  * 消费者评价Service业务层处理
  * 
- * @author ruoyi
- * @date 2024-10-16
+ * 
  */
 @Service
 public class TraceEvaluateServiceImpl implements ITraceEvaluateService 

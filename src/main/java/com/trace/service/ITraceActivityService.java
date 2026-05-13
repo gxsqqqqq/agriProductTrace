@@ -6,7 +6,7 @@ import com.trace.entity.TraceActivity;
 /**
  * 营销活动Service接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-15
  */
 public interface ITraceActivityService 

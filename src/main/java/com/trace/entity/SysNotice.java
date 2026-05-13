@@ -4,13 +4,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.ruoyi.common.core.domain.BaseEntity;
-import com.ruoyi.common.xss.Xss;
+import com.trace.common.core.domain.BaseEntity;
+import com.trace.common.xss.Xss;
 
 /**
  * 通知公告表 sys_notice
  * 
- * @author ruoyi
+ * 
  */
 public class SysNotice extends BaseEntity
 {

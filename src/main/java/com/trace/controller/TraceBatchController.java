@@ -8,9 +8,9 @@ import java.util.Random;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.ruoyi.common.utils.DateUtils;
-import com.ruoyi.common.utils.spring.SpringUtils;
-import com.ruoyi.system.client.TraceRecordsClient;
+import com.trace.common.utils.DateUtils;
+import com.trace.common.utils.spring.SpringUtils;
+import com.trace.blockchain.client.TraceRecordsClient;
 import org.fisco.bcos.sdk.v3.model.TransactionReceipt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,19 +25,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.enums.BusinessType;
+import com.trace.common.annotation.Log;
+import com.trace.common.core.controller.BaseController;
+import com.trace.common.core.domain.AjaxResult;
+import com.trace.common.enums.BusinessType;
 import com.trace.entity.TraceBatch;
 import com.trace.service.ITraceBatchService;
-import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.common.core.page.TableDataInfo;
+import com.trace.common.utils.poi.ExcelUtil;
+import com.trace.common.core.page.TableDataInfo;
 
 /**
  * 批次信息Controller
  *
- * @author ruoyi
+ * 
  * @date 2024-10-13
  */
 @RestController

@@ -6,7 +6,7 @@ import com.trace.entity.TraceActivityRecords;
 /**
  * 活动交易记录Mapper接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-15
  */
 public interface TraceActivityRecordsMapper 

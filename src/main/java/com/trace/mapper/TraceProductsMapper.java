@@ -6,7 +6,7 @@ import com.trace.entity.TraceProducts;
 /**
  * 农产品Mapper接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-09
  */
 public interface TraceProductsMapper 

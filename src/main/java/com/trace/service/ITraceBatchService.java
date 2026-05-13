@@ -7,7 +7,7 @@ import com.trace.dto.RankDTO;
 /**
  * 批次信息Service接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-13
  */
 public interface ITraceBatchService 

@@ -1,14 +1,14 @@
 package com.trace.entity;
 
-import com.ruoyi.common.annotation.Excel;
-import com.ruoyi.common.core.domain.BaseEntity;
+import com.trace.common.annotation.Excel;
+import com.trace.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 积分转让统计对象 trace_trans
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-24
  */
 public class TraceTrans extends BaseEntity

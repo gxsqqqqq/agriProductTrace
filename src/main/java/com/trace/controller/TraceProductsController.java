@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.ruoyi.common.utils.DateUtils;
+import com.trace.common.utils.DateUtils;
 import com.trace.entity.TraceAlaramrecords;
 import com.trace.entity.TraceAlarm;
 import com.trace.dto.AlaramRule;
@@ -23,19 +23,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.enums.BusinessType;
+import com.trace.common.annotation.Log;
+import com.trace.common.core.controller.BaseController;
+import com.trace.common.core.domain.AjaxResult;
+import com.trace.common.enums.BusinessType;
 import com.trace.entity.TraceProducts;
 import com.trace.service.ITraceProductsService;
-import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.common.core.page.TableDataInfo;
+import com.trace.common.utils.poi.ExcelUtil;
+import com.trace.common.core.page.TableDataInfo;
 
 /**
  * 农产品Controller
  *
- * @author ruoyi
+ * 
  * @date 2024-10-09
  */
 @RestController

@@ -10,7 +10,7 @@ import com.trace.service.ITraceActivityService;
 /**
  * 营销活动Service业务层处理
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-15
  */
 @Service

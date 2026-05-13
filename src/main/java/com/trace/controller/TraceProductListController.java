@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.enums.BusinessType;
+import com.trace.common.annotation.Log;
+import com.trace.common.core.controller.BaseController;
+import com.trace.common.core.domain.AjaxResult;
+import com.trace.common.enums.BusinessType;
 import com.trace.entity.TraceProductList;
 import com.trace.service.ITraceProductListService;
-import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.common.core.page.TableDataInfo;
+import com.trace.common.utils.poi.ExcelUtil;
+import com.trace.common.core.page.TableDataInfo;
 
 /**
  * 农产品管理Controller
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-13
  */
 @RestController

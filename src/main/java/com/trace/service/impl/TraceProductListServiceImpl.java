@@ -1,7 +1,7 @@
 package com.trace.service.impl;
 
 import java.util.List;
-import com.ruoyi.common.utils.DateUtils;
+import com.trace.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.trace.mapper.TraceProductListMapper;
@@ -11,7 +11,7 @@ import com.trace.service.ITraceProductListService;
 /**
  * 农产品管理Service业务层处理
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-13
  */
 @Service
