@@ -6,7 +6,7 @@ import com.trace.entity.TraceProductList;
 /**
  * 农产品管理Service接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-13
  */
 public interface ITraceProductListService 

@@ -1,6 +1,6 @@
 package com.trace.blockchain.client;
 
-import com.ruoyi.common.utils.spring.SpringUtils;
+import com.trace.common.utils.spring.SpringUtils;
 import com.trace.blockchain.common.CommonClient;
 import com.trace.blockchain.contract.TraceEvaluate;
 import org.fisco.bcos.sdk.v3.BcosSDK;

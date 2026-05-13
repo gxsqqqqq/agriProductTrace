@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 积分转让统计Mapper接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-24
  */
 public interface TraceTransMapper 

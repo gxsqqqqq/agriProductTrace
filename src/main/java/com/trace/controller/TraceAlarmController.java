@@ -1,11 +1,11 @@
 package com.trace.controller;
 
-import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.core.controller.BaseController;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.core.page.TableDataInfo;
-import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.trace.common.annotation.Log;
+import com.trace.common.core.controller.BaseController;
+import com.trace.common.core.domain.AjaxResult;
+import com.trace.common.core.page.TableDataInfo;
+import com.trace.common.enums.BusinessType;
+import com.trace.common.utils.poi.ExcelUtil;
 import com.trace.entity.TraceAlarm;
 import com.trace.service.ITraceAlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 告警规则Controller
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-22
  */
 @RestController

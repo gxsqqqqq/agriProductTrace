@@ -1,11 +1,11 @@
 package com.trace.controller;
 
-import com.ruoyi.common.annotation.Anonymous;
-import com.ruoyi.common.core.domain.R;
-import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.common.utils.spring.SpringUtils;
-import com.ruoyi.system.client.TraceEvaluateClient;
-import com.ruoyi.system.client.UserAccountClient;
+import com.trace.common.annotation.Anonymous;
+import com.trace.common.core.domain.R;
+import com.trace.common.utils.StringUtils;
+import com.trace.common.utils.spring.SpringUtils;
+import com.trace.blockchain.client.TraceEvaluateClient;
+import com.trace.blockchain.client.UserAccountClient;
 import com.trace.entity.*;
 import com.trace.dto.RankDTO;
 import com.trace.service.*;

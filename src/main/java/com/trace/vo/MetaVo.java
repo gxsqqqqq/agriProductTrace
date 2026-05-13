@@ -1,6 +1,6 @@
 package com.trace.vo;
 
-import com.ruoyi.common.utils.StringUtils;
+import com.trace.common.utils.StringUtils;
 
 public class MetaVo
 {

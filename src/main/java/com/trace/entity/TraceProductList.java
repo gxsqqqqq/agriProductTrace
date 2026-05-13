@@ -2,13 +2,13 @@ package com.trace.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.ruoyi.common.annotation.Excel;
-import com.ruoyi.common.core.domain.BaseEntity;
+import com.trace.common.annotation.Excel;
+import com.trace.common.core.domain.BaseEntity;
 
 /**
  * 农产品管理对象 trace_product_list
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-13
  */
 public class TraceProductList extends BaseEntity

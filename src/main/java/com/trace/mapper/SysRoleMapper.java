@@ -1,7 +1,7 @@
 package com.trace.mapper;
 
 import java.util.List;
-import com.ruoyi.common.core.domain.entity.SysRole;
+import com.trace.common.core.domain.entity.SysRole;
 
 public interface SysRoleMapper
 {

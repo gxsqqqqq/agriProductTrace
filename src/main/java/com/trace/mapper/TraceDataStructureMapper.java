@@ -6,7 +6,7 @@ import com.trace.entity.TraceDataStructure;
 /**
  * 数据结构Mapper接口
  * 
- * @author ruoyi
+ * 
  * @date 2024-10-07
  */
 public interface TraceDataStructureMapper 

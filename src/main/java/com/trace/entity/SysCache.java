@@ -1,24 +1,15 @@
 package com.trace.entity;
 
-import com.ruoyi.common.utils.StringUtils;
+import com.trace.common.utils.StringUtils;
 
-/**
- * 缓存信息
- * 
- * @author ruoyi
- */
 public class SysCache
 {
-    /** 缓存名称 */
     private String cacheName = "";
 
-    /** 缓存键名 */
     private String cacheKey = "";
 
-    /** 缓存内容 */
     private String cacheValue = "";
 
-    /** 备注 */
     private String remark = "";
 
     public SysCache()

@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * 消费者评价Mapper接口
  * 
- * @author ruoyi
- * @date 2024-10-16
+ * 
  */
 public interface TraceEvaluateMapper 
 {

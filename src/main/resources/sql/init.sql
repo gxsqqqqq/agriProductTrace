@@ -30,7 +30,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- 初始化默认管理员账号
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', '管理员', 'ry@163.com', '15888888888', '0', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', sysdate(), 'admin', sysdate(), '', NULL, '管理员');
+INSERT INTO `sys_user` VALUES (1, 'admin', '管理员', 'admin@blocktrace.com', '15888888888', '0', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', sysdate(), 'admin', sysdate(), '', NULL, '系统管理员');
 
 -- ----------------------------
 -- 溯源产品表
