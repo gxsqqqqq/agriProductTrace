@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceActivityMapper">
+    
+    <resultMap type="TraceActivity" id="TraceActivityResult">
+        <result property="id"    column="id"    />
+        <result property="activityName"    column="activity_name"    />
+        <result property="productName"    column="product_name"    />
+        <result property="productUrl"    column="product_url"    />
+        <result property="num"    column="num"    />
+        <result property="integral"    column="integral"    />
+    </resultMap>
+
+    <sql id="selectTraceActivityVo">
+        select id, activity_name, product_name, product_url, num, integral from trace_activity
+    </sql>
+
+    <select id="selectTraceActivityList" parameterType="TraceActivity" resultMap="TraceActivityResult">
+        <include refid="selectTraceActivityVo"/>
+        <where>  
+            <if test="activityName != null  and activityName != ''"> and activity_name like concat('%', #{activityName}, '%')</if>
+            <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
+            <if test="productUrl != null  and productUrl != ''"> and product_url = #{productUrl}</if>
+            <if test="num != null "> and num = #{num}</if>
+            <if test="integral != null  and integral != ''"> and integral = #{integral}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceActivityById" parameterType="Long" resultMap="TraceActivityResult">
+        <include refid="selectTraceActivityVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceActivity" parameterType="TraceActivity">
+        insert into trace_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="activityName != null">activity_name,</if>
+            <if test="productName != null">product_name,</if>
+            <if test="productUrl != null">product_url,</if>
+            <if test="num != null">num,</if>
+            <if test="integral != null">integral,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="activityName != null">#{activityName},</if>
+            <if test="productName != null">#{productName},</if>
+            <if test="productUrl != null">#{productUrl},</if>
+            <if test="num != null">#{num},</if>
+            <if test="integral != null">#{integral},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceActivity" parameterType="TraceActivity">
+        update trace_activity
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="activityName != null">activity_name = #{activityName},</if>
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="productUrl != null">product_url = #{productUrl},</if>
+            <if test="num != null">num = #{num},</if>
+            <if test="integral != null">integral = #{integral},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceActivityById" parameterType="Long">
+        delete from trace_activity where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceActivityByIds" parameterType="String">
+        delete from trace_activity where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

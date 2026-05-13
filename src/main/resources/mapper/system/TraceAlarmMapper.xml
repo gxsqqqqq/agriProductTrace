@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceAlarmMapper">
+    
+    <resultMap type="TraceAlarm" id="TraceAlarmResult">
+        <result property="id"    column="id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="rules"    column="rules"    />
+        <result property="remark"    column="remark"    />
+        <result property="ext1"    column="ext1"    />
+        <result property="ext2"    column="ext2"    />
+        <result property="ext3"    column="ext3"    />
+    </resultMap>
+
+    <sql id="selectTraceAlarmVo">
+        select id, product_id, rules, remark, ext1, ext2, ext3 from trace_alarm
+    </sql>
+
+    <select id="selectTraceAlarmList" parameterType="TraceAlarm" resultMap="TraceAlarmResult">
+        <include refid="selectTraceAlarmVo"/>
+        <where>  
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="rules != null  and rules != ''"> and rules = #{rules}</if>
+            <if test="ext1 != null  and ext1 != ''"> and ext1 = #{ext1}</if>
+            <if test="ext2 != null  and ext2 != ''"> and ext2 = #{ext2}</if>
+            <if test="ext3 != null  and ext3 != ''"> and ext3 = #{ext3}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceAlarmById" parameterType="Long" resultMap="TraceAlarmResult">
+        <include refid="selectTraceAlarmVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceAlarm" parameterType="TraceAlarm" useGeneratedKeys="true" keyProperty="id">
+        insert into trace_alarm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="rules != null">rules,</if>
+            <if test="remark != null">remark,</if>
+            <if test="ext1 != null">ext1,</if>
+            <if test="ext2 != null">ext2,</if>
+            <if test="ext3 != null">ext3,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="rules != null">#{rules},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="ext1 != null">#{ext1},</if>
+            <if test="ext2 != null">#{ext2},</if>
+            <if test="ext3 != null">#{ext3},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceAlarm" parameterType="TraceAlarm">
+        update trace_alarm
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="rules != null">rules = #{rules},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="ext1 != null">ext1 = #{ext1},</if>
+            <if test="ext2 != null">ext2 = #{ext2},</if>
+            <if test="ext3 != null">ext3 = #{ext3},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceAlarmById" parameterType="Long">
+        delete from trace_alarm where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceAlarmByIds" parameterType="String">
+        delete from trace_alarm where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

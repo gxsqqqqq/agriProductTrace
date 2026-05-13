@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceActivityRecordsMapper">
+    
+    <resultMap type="TraceActivityRecords" id="TraceActivityRecordsResult">
+        <result property="id"    column="id"    />
+        <result property="tel"    column="tel"    />
+        <result property="activityId"    column="activity_id"    />
+        <result property="blockHash"    column="block_hash"    />
+        <result property="ext1"    column="ext1"    />
+        <result property="ext2"    column="ext2"    />
+    </resultMap>
+
+    <sql id="selectTraceActivityRecordsVo">
+        select id, tel, activity_id, block_hash, ext1, ext2 from trace_activity_records
+    </sql>
+
+    <select id="selectTraceActivityRecordsList" parameterType="TraceActivityRecords" resultMap="TraceActivityRecordsResult">
+        <include refid="selectTraceActivityRecordsVo"/>
+        <where>  
+            <if test="tel != null  and tel != ''"> and tel = #{tel}</if>
+            <if test="activityId != null "> and activity_id = #{activityId}</if>
+            <if test="blockHash != null  and blockHash != ''"> and block_hash = #{blockHash}</if>
+            <if test="ext1 != null  and ext1 != ''"> and ext1 = #{ext1}</if>
+            <if test="ext2 != null  and ext2 != ''"> and ext2 = #{ext2}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceActivityRecordsById" parameterType="Long" resultMap="TraceActivityRecordsResult">
+        <include refid="selectTraceActivityRecordsVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceActivityRecords" parameterType="TraceActivityRecords">
+        insert into trace_activity_records
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="tel != null">tel,</if>
+            <if test="activityId != null">activity_id,</if>
+            <if test="blockHash != null">block_hash,</if>
+            <if test="ext1 != null">ext1,</if>
+            <if test="ext2 != null">ext2,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="tel != null">#{tel},</if>
+            <if test="activityId != null">#{activityId},</if>
+            <if test="blockHash != null">#{blockHash},</if>
+            <if test="ext1 != null">#{ext1},</if>
+            <if test="ext2 != null">#{ext2},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceActivityRecords" parameterType="TraceActivityRecords">
+        update trace_activity_records
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="tel != null">tel = #{tel},</if>
+            <if test="activityId != null">activity_id = #{activityId},</if>
+            <if test="blockHash != null">block_hash = #{blockHash},</if>
+            <if test="ext1 != null">ext1 = #{ext1},</if>
+            <if test="ext2 != null">ext2 = #{ext2},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceActivityRecordsById" parameterType="Long">
+        delete from trace_activity_records where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceActivityRecordsByIds" parameterType="String">
+        delete from trace_activity_records where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

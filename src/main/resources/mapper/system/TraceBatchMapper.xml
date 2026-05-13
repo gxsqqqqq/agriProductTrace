@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceBatchMapper">
+    
+    <resultMap type="TraceBatch" id="TraceBatchResult">
+        <result property="id"    column="id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="batchNo"    column="batch_no"    />
+        <result property="productName"    column="product_name"    />
+        <result property="blockHash"    column="block_hash"    />
+        <result property="blockData"    column="block_data"    />
+        <result property="dataJson"    column="data_json"    />
+        <result property="ext1"    column="ext1"    />
+        <result property="ext2"    column="ext2"    />
+    </resultMap>
+
+    <resultMap type="RankDTO" id="getRank">
+        <result property="productName"    column="product_name"    />
+        <result property="batchCount"    column="batch_count"    />
+    </resultMap>
+
+    <sql id="selectTraceBatchVo">
+        select id, batch_no, product_id, product_name, block_hash, block_data, data_json, ext1, ext2 from trace_batch
+    </sql>
+
+    <select id="selectTraceBatchListRank" resultMap="getRank">
+        SELECT  product_name, COUNT(*) AS batch_count
+        FROM trace_batch
+        GROUP BY product_name
+        ORDER BY batch_count DESC
+            LIMIT 5;
+    </select>
+
+    <select id="selectTraceBatchList" parameterType="TraceBatch" resultMap="TraceBatchResult">
+        <include refid="selectTraceBatchVo"/>
+        <where>  
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="batchNo != null "> and batch_no = #{batchNo}</if>
+            <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
+            <if test="blockHash != null  and blockHash != ''"> and block_hash = #{blockHash}</if>
+            <if test="blockData != null  and blockData != ''"> and block_data = #{blockData}</if>
+            <if test="dataJson != null  and dataJson != ''"> and data_json = #{dataJson}</if>
+            <if test="ext1 != null  and ext1 != ''"> and ext1 = #{ext1}</if>
+            <if test="ext2 != null  and ext2 != ''"> and ext2 = #{ext2}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceBatchById" parameterType="Long" resultMap="TraceBatchResult">
+        <include refid="selectTraceBatchVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceBatch" parameterType="TraceBatch">
+        insert into trace_batch
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="batchNo != null">batch_no,</if>
+            <if test="productId != null">product_id,</if>
+            <if test="productName != null">product_name,</if>
+            <if test="blockHash != null">block_hash,</if>
+            <if test="blockData != null">block_data,</if>
+            <if test="dataJson != null">data_json,</if>
+            <if test="ext1 != null">ext1,</if>
+            <if test="ext2 != null">ext2,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="batchNo != null">#{batchNo},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="productName != null">#{productName},</if>
+            <if test="blockHash != null">#{blockHash},</if>
+            <if test="blockData != null">#{blockData},</if>
+            <if test="dataJson != null">#{dataJson},</if>
+            <if test="ext1 != null">#{ext1},</if>
+            <if test="ext2 != null">#{ext2},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceBatch" parameterType="TraceBatch">
+        update trace_batch
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="blockHash != null">block_hash = #{blockHash},</if>
+            <if test="blockData != null">block_data = #{blockData},</if>
+            <if test="dataJson != null">data_json = #{dataJson},</if>
+            <if test="ext1 != null">ext1 = #{ext1},</if>
+            <if test="ext2 != null">ext2 = #{ext2},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceBatchById" parameterType="Long">
+        delete from trace_batch where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceBatchByIds" parameterType="String">
+        delete from trace_batch where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

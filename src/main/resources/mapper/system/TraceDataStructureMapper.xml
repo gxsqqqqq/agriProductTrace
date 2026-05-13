@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceDataStructureMapper">
+    
+    <resultMap type="TraceDataStructure" id="TraceDataStructureResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="dataJson"    column="data_json"    />
+        <result property="node"    column="node"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectTraceDataStructureVo">
+        select id, code, name,node, data_json, remark from trace_data_structure
+    </sql>
+
+    <select id="selectTraceDataStructureList" parameterType="TraceDataStructure" resultMap="TraceDataStructureResult">
+        <include refid="selectTraceDataStructureVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="node != null  and node != ''"> and node = #{node}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="dataJson != null  and dataJson != ''"> and data_json = #{dataJson}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceDataStructureById" parameterType="Long" resultMap="TraceDataStructureResult">
+        <include refid="selectTraceDataStructureVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceDataStructure" parameterType="TraceDataStructure" useGeneratedKeys="true" keyProperty="id">
+        insert into trace_data_structure
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null and code != ''">code,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="node != null and node != ''">node,</if>
+            <if test="dataJson != null">data_json,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null and code != ''">#{code},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="node != null and node != ''">#{node},</if>
+            <if test="dataJson != null">#{dataJson},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceDataStructure" parameterType="TraceDataStructure">
+        update trace_data_structure
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null and code != ''">code = #{code},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="node != null and node != ''">node = #{node},</if>
+            <if test="dataJson != null">data_json = #{dataJson},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceDataStructureById" parameterType="Long">
+        delete from trace_data_structure where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceDataStructureByIds" parameterType="String">
+        delete from trace_data_structure where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

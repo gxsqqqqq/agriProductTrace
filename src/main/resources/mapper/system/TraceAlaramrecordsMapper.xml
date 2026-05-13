@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceAlaramrecordsMapper">
+    
+    <resultMap type="TraceAlaramrecords" id="TraceAlaramrecordsResult">
+        <result property="id"    column="id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="ruleId"    column="rule_id"    />
+        <result property="ruleDetail"    column="rule_detail"    />
+        <result property="ext1"    column="ext1"    />
+        <result property="ext2"    column="ext2"    />
+        <result property="ext3"    column="ext3"    />
+    </resultMap>
+
+    <sql id="selectTraceAlaramrecordsVo">
+        select id, product_id, rule_id, rule_detail, ext1, ext2, ext3 from trace_alaramrecords
+    </sql>
+
+    <select id="selectTraceAlaramrecordsList" parameterType="TraceAlaramrecords" resultMap="TraceAlaramrecordsResult">
+        <include refid="selectTraceAlaramrecordsVo"/>
+        <where>  
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="ruleId != null "> and rule_id = #{ruleId}</if>
+            <if test="ruleDetail != null  and ruleDetail != ''"> and rule_detail = #{ruleDetail}</if>
+            <if test="ext1 != null  and ext1 != ''"> and ext1 = #{ext1}</if>
+            <if test="ext2 != null  and ext2 != ''"> and ext2 = #{ext2}</if>
+            <if test="ext3 != null  and ext3 != ''"> and ext3 = #{ext3}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceAlaramrecordsById" parameterType="Long" resultMap="TraceAlaramrecordsResult">
+        <include refid="selectTraceAlaramrecordsVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceAlaramrecords" parameterType="TraceAlaramrecords" useGeneratedKeys="true" keyProperty="id">
+        insert into trace_alaramrecords
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="ruleId != null">rule_id,</if>
+            <if test="ruleDetail != null">rule_detail,</if>
+            <if test="ext1 != null">ext1,</if>
+            <if test="ext2 != null">ext2,</if>
+            <if test="ext3 != null">ext3,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="ruleId != null">#{ruleId},</if>
+            <if test="ruleDetail != null">#{ruleDetail},</if>
+            <if test="ext1 != null">#{ext1},</if>
+            <if test="ext2 != null">#{ext2},</if>
+            <if test="ext3 != null">#{ext3},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceAlaramrecords" parameterType="TraceAlaramrecords">
+        update trace_alaramrecords
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="ruleId != null">rule_id = #{ruleId},</if>
+            <if test="ruleDetail != null">rule_detail = #{ruleDetail},</if>
+            <if test="ext1 != null">ext1 = #{ext1},</if>
+            <if test="ext2 != null">ext2 = #{ext2},</if>
+            <if test="ext3 != null">ext3 = #{ext3},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceAlaramrecordsById" parameterType="Long">
+        delete from trace_alaramrecords where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceAlaramrecordsByIds" parameterType="String">
+        delete from trace_alaramrecords where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

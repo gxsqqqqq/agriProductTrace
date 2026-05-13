@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceTransMapper">
+    
+    <resultMap type="TraceTrans" id="TraceTransResult">
+        <result property="id"    column="id"    />
+        <result property="fromUser"    column="from_user"    />
+        <result property="toUser"    column="to_user"    />
+        <result property="amount"    column="amount"    />
+        <result property="blockNumber"    column="block_number"    />
+        <result property="blockHash"    column="block_hash"    />
+        <result property="remark"    column="remark"    />
+        <result property="ext1"    column="ext1"    />
+        <result property="ext2"    column="ext2"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectTraceTransVo">
+        select id, from_user, to_user, amount, block_number, block_hash, remark, ext1, ext2, create_time from trace_trans
+    </sql>
+
+    <select id="selectTraceTransList" parameterType="TraceTrans" resultMap="TraceTransResult">
+        <include refid="selectTraceTransVo"/>
+        <where>  
+            <if test="fromUser != null "> and from_user = #{fromUser}</if>
+            <if test="toUser != null  and toUser != ''"> and to_user = #{toUser}</if>
+            <if test="amount != null "> and amount = #{amount}</if>
+            <if test="blockNumber != null  and blockNumber != ''"> and block_number = #{blockNumber}</if>
+            <if test="blockHash != null  and blockHash != ''"> and block_hash = #{blockHash}</if>
+            <if test="ext1 != null  and ext1 != ''"> and ext1 = #{ext1}</if>
+            <if test="ext2 != null  and ext2 != ''"> and ext2 = #{ext2}</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceTransById" parameterType="Long" resultMap="TraceTransResult">
+        <include refid="selectTraceTransVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceTrans" parameterType="TraceTrans" useGeneratedKeys="true" keyProperty="id">
+        insert into trace_trans
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fromUser != null">from_user,</if>
+            <if test="toUser != null">to_user,</if>
+            <if test="amount != null">amount,</if>
+            <if test="blockNumber != null">block_number,</if>
+            <if test="blockHash != null">block_hash,</if>
+            <if test="remark != null">remark,</if>
+            <if test="ext1 != null">ext1,</if>
+            <if test="ext2 != null">ext2,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fromUser != null">#{fromUser},</if>
+            <if test="toUser != null">#{toUser},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="blockNumber != null">#{blockNumber},</if>
+            <if test="blockHash != null">#{blockHash},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="ext1 != null">#{ext1},</if>
+            <if test="ext2 != null">#{ext2},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceTrans" parameterType="TraceTrans">
+        update trace_trans
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fromUser != null">from_user = #{fromUser},</if>
+            <if test="toUser != null">to_user = #{toUser},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="blockNumber != null">block_number = #{blockNumber},</if>
+            <if test="blockHash != null">block_hash = #{blockHash},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="ext1 != null">ext1 = #{ext1},</if>
+            <if test="ext2 != null">ext2 = #{ext2},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceTransById" parameterType="Long">
+        delete from trace_trans where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceTransByIds" parameterType="String">
+        delete from trace_trans where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

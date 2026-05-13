@@ -1,0 +1,31 @@
+[cryptoMaterial]
+
+certPath = "conf"
+
+useSMCrypto = false
+
+[network]
+
+peers=["192.168.101.132:20200","192.168.101.132:20201","192.168.101.132:20202","192.168.101.132:20203"]
+
+defaultGroup="group0"
+
+[account]
+
+keyStoreDir="account"
+
+accountAddress=""
+
+accountFileFormat="pem"
+
+password=""
+
+accountFilePath=""
+
+[threadPool]
+
+channelProcessorThreadSize=16
+
+receiptProcessorThreadSize=16
+
+maxBlockingQueueSize=102400

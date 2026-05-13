@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trace.mapper.TraceProductListMapper">
+    
+    <resultMap type="TraceProductList" id="TraceProductListResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="checkStatus"    column="check_status"    />
+        <result property="machiningStatus"    column="machining_status"    />
+        <result property="saleStatus"    column="sale_status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectTraceProductListVo">
+        select id,
+               code,
+               name,
+               check_status,
+               machining_status,
+               sale_status,
+               create_by,
+               create_time,
+               update_by,
+               update_time
+        from trace_product_list
+    </sql>
+
+    <select id="selectTraceProductListList" parameterType="TraceProductList" resultMap="TraceProductListResult">
+        <include refid="selectTraceProductListVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="checkStatus != null  and checkStatus != ''"> and check_status = #{checkStatus}</if>
+            <if test="machiningStatus != null  and machiningStatus != ''"> and machining_status = #{machiningStatus}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTraceProductListById" parameterType="Long" resultMap="TraceProductListResult">
+        <include refid="selectTraceProductListVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTraceProductList" parameterType="TraceProductList" useGeneratedKeys="true" keyProperty="id">
+        insert into trace_product_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="name != null">name,</if>
+            <if test="checkStatus != null">check_status,</if>
+            <if test="machiningStatus != null">machining_status,</if>
+            <if test="saleStatus != null">sale_status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="name != null">#{name},</if>
+            <if test="checkStatus != null">#{checkStatus},</if>
+            <if test="machiningStatus != null">#{machiningStatus},</if>
+            <if test="saleStatus != null">#{saleStatus},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTraceProductList" parameterType="TraceProductList">
+        update trace_product_list
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="checkStatus != null">check_status = #{checkStatus},</if>
+            <if test="machiningStatus != null">machining_status = #{machiningStatus},</if>
+            <if test="saleStatus != null">sale_status = #{saleStatus},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTraceProductListById" parameterType="Long">
+        delete from trace_product_list where id = #{id}
+    </delete>
+
+    <delete id="deleteTraceProductListByIds" parameterType="String">
+        delete from trace_product_list where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
