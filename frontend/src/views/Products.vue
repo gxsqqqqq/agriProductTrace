@@ -113,7 +113,7 @@ const rules = {
 
 const loadData = async () => {
   try {
-    const res = await request.get('/traceProducts/list', { params: queryForm })
+    const res = await request.get('/system/products/list', { params: queryForm })
     if (res.rows) {
       tableData.value = res.rows
       total.value = res.total
@@ -158,7 +158,7 @@ const handleChain = async (row) => {
 const handleDelete = async (row) => {
   try {
     await ElMessageBox.confirm('确定删除该产品吗？', '提示', { type: 'warning' })
-    await request.delete(`/traceProducts/${row.id}`)
+    await request.delete(`/system/products/${row.id}`)
     ElMessage.success('删除成功')
     loadData()
   } catch (e) {
@@ -173,9 +173,9 @@ const handleSubmit = async () => {
   await formRef.value.validate()
   try {
     if (form.id) {
-      await request.put('/traceProducts', form)
+      await request.put('/system/products', form)
     } else {
-      await request.post('/traceProducts', form)
+      await request.post('/system/products', form)
     }
     ElMessage.success('操作成功')
     dialogVisible.value = false

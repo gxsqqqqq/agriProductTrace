@@ -108,7 +108,7 @@ public class TraceBatchController extends BaseController {
 
             traceBatchService.insertTraceBatch(batch);
         }
-        return toAjax(true);
+        return toAjax(1);
     }
 
     private String genBatchNo() {

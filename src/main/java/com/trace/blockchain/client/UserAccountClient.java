@@ -34,8 +34,16 @@ public class UserAccountClient extends CommonClient implements ApplicationRunner
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        BcosSDK bcosSDK = SpringUtils.getBean(BcosSDK.class);
-        deploy("UserAccount", UserAccount.class,bcosSDK);
-        logger.info("UserAccount deployed successfully");
+        try {
+            BcosSDK bcosSDK = SpringUtils.getBean(BcosSDK.class);
+            if (bcosSDK == null) {
+                logger.warn("BcosSDK 未配置，跳过 UserAccount 合约部署");
+                return;
+            }
+            deploy("UserAccount", UserAccount.class, bcosSDK);
+            logger.info("UserAccount deployed successfully");
+        } catch (Exception e) {
+            logger.warn("UserAccount 合约部署失败: {}", e.getMessage());
+        }
     }
 }

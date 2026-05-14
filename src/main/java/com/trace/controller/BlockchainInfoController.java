@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
@@ -44,8 +43,6 @@ public class BlockchainInfoController {
     ITraceActivityService traceActivityService;
     @Autowired
     ITraceBatchService traceBatchService;
-    @Autowired
-    ITraceActivityService activityService;
     @Autowired
     ITraceWelfareService traceWelfareService;
     @Autowired
@@ -314,7 +311,7 @@ public class BlockchainInfoController {
     @Anonymous
     @GetMapping("/getActivityList")
     public R getActivityList(TraceActivity traceActivity) {
-        List<TraceActivity> traceActivities = activityService.selectTraceActivityList(traceActivity);
+        List<TraceActivity> traceActivities = traceActivityService.selectTraceActivityList(traceActivity);
         return R.ok(traceActivities);
     }
 

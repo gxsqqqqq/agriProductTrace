@@ -1,5 +1,6 @@
 package com.trace.common.annotation;
 
+import com.trace.common.enums.BusinessType;
 import java.lang.annotation.*;
 
 @Target({ElementType.TYPE, ElementType.METHOD})

@@ -24,8 +24,16 @@ public class TraceRecordsClient extends CommonClient implements ApplicationRunne
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        BcosSDK bcosSDK = SpringUtils.getBean(BcosSDK.class);
-        deploy("TraceRecords", TraceRecords.class, bcosSDK);
-        logger.info("deploy contract TraceRecords success!");
+        try {
+            BcosSDK bcosSDK = SpringUtils.getBean(BcosSDK.class);
+            if (bcosSDK == null) {
+                logger.warn("BcosSDK 未配置，跳过 TraceRecords 合约部署");
+                return;
+            }
+            deploy("TraceRecords", TraceRecords.class, bcosSDK);
+            logger.info("deploy contract TraceRecords success!");
+        } catch (Exception e) {
+            logger.warn("TraceRecords 合约部署失败: {}", e.getMessage());
+        }
     }
 }

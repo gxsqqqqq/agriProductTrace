@@ -44,7 +44,7 @@ const tableData = ref([])
 
 const loadData = async () => {
   try {
-    const res = await request.get('/traceBatch/list')
+    const res = await request.get('/system/batch/list')
     if (res.rows) {
       tableData.value = res.rows
     }

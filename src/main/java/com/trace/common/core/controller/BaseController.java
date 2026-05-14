@@ -45,4 +45,8 @@ public class BaseController {
     protected R<Void> error(int code, String msg) {
         return R.fail(code, msg);
     }
+
+    protected R<Integer> toAjax(int rows) {
+        return R.toAjax(rows);
+    }
 }

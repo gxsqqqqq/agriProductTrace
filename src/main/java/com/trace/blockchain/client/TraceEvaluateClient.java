@@ -21,8 +21,16 @@ public class TraceEvaluateClient extends CommonClient implements ApplicationRunn
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        BcosSDK bcosSDK = SpringUtils.getBean(BcosSDK.class);
-        deploy("TraceEvaluate", TraceEvaluate.class, bcosSDK);
-        logger.info("deploy contract TraceEvaluate success!");
+        try {
+            BcosSDK bcosSDK = SpringUtils.getBean(BcosSDK.class);
+            if (bcosSDK == null) {
+                logger.warn("BcosSDK 未配置，跳过 TraceEvaluate 合约部署");
+                return;
+            }
+            deploy("TraceEvaluate", TraceEvaluate.class, bcosSDK);
+            logger.info("deploy contract TraceEvaluate success!");
+        } catch (Exception e) {
+            logger.warn("TraceEvaluate 合约部署失败: {}", e.getMessage());
+        }
     }
 }

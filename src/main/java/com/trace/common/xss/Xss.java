@@ -1,21 +1,10 @@
 package com.trace.common.xss;
 
-import org.apache.commons.lang3.StringUtils;
+import java.lang.annotation.*;
 
-public class Xss {
-    private static final String HTML_TAG = "<[^>]*>";
-
-    public static String filter(String value) {
-        if (StringUtils.isBlank(value)) {
-            return value;
-        }
-        return value.replaceAll(HTML_TAG, "");
-    }
-
-    public static boolean isValid(String value) {
-        if (StringUtils.isBlank(value)) {
-            return true;
-        }
-        return !value.matches(HTML_TAG);
-    }
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Xss {
+    String message() default "";
 }

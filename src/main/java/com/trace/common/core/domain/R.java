@@ -1,11 +1,9 @@
 package com.trace.common.core.domain;
 
-public class R<T> extends HashMap<String, Object> {
-    private static final long serialVersionUID = 1L;
+import java.io.Serializable;
 
-    public static final String CODE_TAG = "code";
-    public static final String MSG_TAG = "msg";
-    public static final String DATA_TAG = "data";
+public class R<T> extends AjaxResult implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public R() {
     }
@@ -39,7 +37,7 @@ public class R<T> extends HashMap<String, Object> {
     }
 
     public static <T> R<T> fail(String msg) {
-        return R.fail(msg, null);
+        return R.fail(500, msg);
     }
 
     public static <T> R<T> fail(int code, String msg) {
@@ -50,9 +48,7 @@ public class R<T> extends HashMap<String, Object> {
         return new R<>(500, msg, data);
     }
 
-    @Override
-    public R<T> put(String key, Object value) {
-        super.put(key, value);
-        return this;
+    public static R<Integer> toAjax(int rows) {
+        return rows > 0 ? R.ok() : R.fail();
     }
 }

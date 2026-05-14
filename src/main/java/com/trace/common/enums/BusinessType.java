@@ -5,9 +5,10 @@ public enum BusinessType {
     INSERT,
     UPDATE,
     DELETE,
-    GRANT,
+    SELECT,
     EXPORT,
     IMPORT,
-    FORCE_LOGOUT,
-    CLEAN_DATA
+    GRANT,
+    GENCODE,
+    CLEAN
 }

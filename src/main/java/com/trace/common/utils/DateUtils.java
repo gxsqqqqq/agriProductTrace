@@ -5,8 +5,20 @@ import java.util.Date;
 
 public class DateUtils {
 
+    public static final String YYYY_MM_DD = "yyyy-MM-dd";
+    public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+    public static final String HH_MM_SS = "HH:mm:ss";
+
     public static String dateTime() {
         return format(new Date());
+    }
+
+    public static Date getNowDate() {
+        return new Date();
+    }
+
+    public static String dateTimeNow(String format) {
+        return format(new Date(), format);
     }
 
     public static String dateTime(String format) {

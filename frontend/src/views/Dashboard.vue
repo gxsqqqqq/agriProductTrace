@@ -118,13 +118,13 @@ const loadData = async () => {
       stats.value.blockCount = res.data.blockNumber || 0
     }
   } catch (e) {
-    console.error(e)
+    console.warn('区块链接口暂时不可用，使用默认数据')
   }
-  
+
   stats.value.productCount = Math.floor(Math.random() * 100) + 50
   stats.value.batchCount = Math.floor(Math.random() * 50) + 20
   stats.value.alarmCount = Math.floor(Math.random() * 10)
-  
+
   transList.value = [
     { hash: '0x1234...abcd', blockNumber: 12345, timestamp: '2024-01-15 10:30:00' },
     { hash: '0x5678...efgh', blockNumber: 12344, timestamp: '2024-01-15 10:25:00' },

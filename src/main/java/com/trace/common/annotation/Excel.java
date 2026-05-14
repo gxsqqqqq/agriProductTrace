@@ -10,6 +10,9 @@ public @interface Excel {
     String readConverterExp() default "";
     String separator() default ",";
     int maxCellLength() default -1;
+    int width() default 0;
+    String dateFormat() default "";
+    String suffix() default "";
 
     enum ColumnType {
         TEXT,
