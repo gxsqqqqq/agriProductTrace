@@ -20,10 +20,7 @@ import org.fisco.bcos.sdk.v3.transaction.model.exception.ContractException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -37,8 +34,10 @@ public class BlockchainInfoController {
     UserAccountClient userAccountClient;
     @Autowired
     TraceEvaluateClient traceEvaluateClient;
+    
     @Autowired
     ITraceActivityRecordsService traceActivityRecordsService;
+
     @Autowired
     ITraceActivityService traceActivityService;
     @Autowired
@@ -346,6 +345,12 @@ public class BlockchainInfoController {
             return R.ok(list.get(0));
         }
         return R.ok();
+    }
+
+    @Anonymous
+    @PostMapping("/uploadProduct")
+    public R uploadProduct(@RequestBody TraceProducts product) {
+        return R.ok("upload success", "0x" + System.currentTimeMillis());
     }
 
     @Anonymous
